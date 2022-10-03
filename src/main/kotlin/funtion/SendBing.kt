@@ -75,7 +75,11 @@ suspend fun installSendBing() {
     }
 
     launch(Dispatchers.IO) {
-        timer("Send msg", true, Date(), day) {
+        val date = Date().apply {
+            hours = 9
+            minutes = 0
+        }
+        timer("Send msg", true, date, day) {
             val id = transaction {
                 allChat.map { it.id.value }
             }
