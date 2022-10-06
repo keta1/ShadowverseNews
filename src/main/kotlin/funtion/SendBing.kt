@@ -59,9 +59,9 @@ suspend fun installSendBing() {
                 break
             }
             logger.info { "send ${newest.title} the newest bing to $id" }
-            val code = newest.desc.substringAfter("国服永久码：").substringBefore("\n")
+            val code = newest.desc.substringAfter("永久码：").substringBefore("\n").trim()
             val tLevel = newest.desc.substringAfter("预计T").substringBefore("。")
-            val msg = "国服永久码：\n${code.codeMarkdown()}\n" +
+            val msg = "${newest.title}\n国服永久码：${code.codeMarkdown()}\n" +
                     "详情：${newest.bvId.linkMarkdown("https://www.bilibili.com/video/" + newest.bvId)}\n" +
                     "#每日饼 #t$tLevel"
             sendPhoto(ChatId(id), InputFile.fromUrl(newest.firstFrame), text = msg, parseMode = Markdown)
