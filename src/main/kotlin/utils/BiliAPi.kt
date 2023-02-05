@@ -5,6 +5,7 @@ import data.Video
 import data.VideoList
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
+import io.ktor.http.*
 
 object BiliAPi {
     suspend fun getVideo(
@@ -17,6 +18,9 @@ object BiliAPi {
                 parameters["mid"] = id
                 parameters["ps"] = ps
                 parameters["pn"] = pn
+            }
+            headers {
+                userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36")
             }
         }.bodyAsText().decodeToDataClass()
     }
